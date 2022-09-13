@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { filter, map, tap } from 'rxjs/operators';
 import { IUser, IUsers } from 'src/app/models/UserModel';
 import { DataService } from 'src/app/services/data.service';
 import { LoadingService } from 'src/app/services/loading.service';
@@ -11,32 +12,12 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class TableComponent implements OnInit {
 
-  users: IUser[] = [];
-  sortOrder:string='asc';
+  @Input() userList: IUser[] = [];
 
-  constructor(
-    private dataService: DataService,
-    private loadingService: LoadingService) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.getData();
-    this.dataService.getSearchTerm();
-  }
+  ngOnInit(): void {}
 
-  async getData() {
-    this.loadingService.loadingOn()
-    const response= await this.dataService.getUsers();
-    this.users = response?.users!;
-    this.loadingService.loadingOff()
-   this.dataService.searchQuery$.subscribe(
-      val=> this.filterByLastName(val)
-    )
 
-  }
-
-  filterByLastName(val:string) {
-    console.log(val)
-   this.users.filter(user => user.lastName == val)
-  }
 
 }

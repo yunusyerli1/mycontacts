@@ -6,9 +6,14 @@
           <app-search-bar></app-search-bar>
         </div>
         <div class="col-12">
-          <app-table></app-table>
+          <app-table [userList]="users$ | async"></app-table>
+
+          <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+            {{errorMessage}}: Please try again later!
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+

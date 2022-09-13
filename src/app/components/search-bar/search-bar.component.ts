@@ -16,7 +16,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   filterByLastName() {
-    if(this.term != '')this.dataService.setSearchTerm(this.term.trim());
+    if(this.term != '') this.dataService.setSearchTerm(this.term.trim());
   }
 
   clearFilter() {
