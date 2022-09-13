@@ -1,4 +1,4 @@
-import { Directive, Input, ElementRef, HostListener } from '@angular/core';
+import { Directive, Input, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { Sort } from '../utils/sort';
 
 
@@ -12,14 +12,9 @@ export class SortDirective {
 
   @HostListener("click")
   sortData() {
-    // Create Object of Sort Class
     const sort = new Sort();
-    // Get Reference Of Current Clicked Element
     const el = this.elRef.nativeElement;
-    // Get In WHich Order list should be sorted by default it should be set to desc on element attribute
     const order = el.getAttribute("data-order");
-
-    // Get The Property Name from Element Attribute
     const property = el.getAttribute("data-name");
     if (order === "desc") {
       this.appSort.sort(sort.startSort(property, order));

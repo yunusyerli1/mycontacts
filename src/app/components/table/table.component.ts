@@ -20,6 +20,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData();
+    this.dataService.getSearchTerm();
   }
 
   async getData() {
@@ -27,22 +28,15 @@ export class TableComponent implements OnInit {
     const response= await this.dataService.getUsers();
     this.users = response?.users!;
     this.loadingService.loadingOff()
-    console.log(this.users)
+   this.dataService.searchQuery$.subscribe(
+      val=> this.filterByLastName(val)
+    )
+
   }
 
-  sortUsers(sortKey:string) {
-    // this.users.sort((a:any,b:any)=> {
-    //   const nameA = a.firstName.toLowerCase();
-    //   const nameB = b.firstName.toLowerCase();
-    //   if(nameA < nameB) return -1;
-    //   if(nameA > nameB) return 1;
-    //   return 0;
-    // })
-    this.users.sort((a:any,b:any)=> {
-      if (a[sortKey] < b[sortKey]) return -1;
-          else if (a[sortKey] > b[sortKey]) return 1;
-          else return 0;
-    })
+  filterByLastName(val:string) {
+    console.log(val)
+   this.users.filter(user => user.lastName == val)
   }
 
 }
