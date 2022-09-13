@@ -2,3 +2,13 @@
   background-color:
   #5c566b;
 }
+
+.hover-red {
+  &:hover {
+    color: #eb7f76;
+  }
+}
+
+.font-custom {
+  color: white;
+}
