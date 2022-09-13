@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class DataService {
 
-  public searchSubject = new BehaviorSubject<string>('');
+  private searchSubject = new BehaviorSubject<string>('');
   searchQuery$: Observable<string>= this.searchSubject.asObservable();
 
   constructor(private http: HttpClient) { }
