@@ -11,7 +11,7 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  public getData(): Observable<IUser[]> {
-    return  this.http.get<any>(environment.fakeDataUrl + "/user");
+  public getData(){
+    return  this.http.get<IUser[]>(environment.fakeDataUrl + "/users").toPromise();
   }
 }

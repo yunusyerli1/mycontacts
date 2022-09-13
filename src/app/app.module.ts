@@ -8,6 +8,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { TableComponent } from './components/table/table.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     HomeComponent,
     NotFoundPageComponent,
-    TableComponent
+    TableComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
