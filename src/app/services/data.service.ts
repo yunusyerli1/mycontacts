@@ -11,7 +11,7 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  public getData(){
+  public getUsers(){
     return  this.http.get<IUser[]>(environment.fakeDataUrl + "/users").toPromise();
   }
 }

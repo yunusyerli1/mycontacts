@@ -18,12 +18,12 @@ export class TableComponent implements OnInit {
     private loadingService: LoadingService) { }
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getData();
   }
 
-  async getUsers() {
+  async getData() {
     this.loadingService.loadingOn()
-    this.users = await this.dataService.getData();
+    this.users = await this.dataService.getUsers();
     this.loadingService.loadingOff()
     console.log(this.users)
   }
