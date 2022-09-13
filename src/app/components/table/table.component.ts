@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { IUser } from 'src/app/models/UserModel';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { filter, map, tap } from 'rxjs/operators';
+import { IUser, IUsers } from 'src/app/models/UserModel';
 import { DataService } from 'src/app/services/data.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
@@ -11,21 +12,12 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class TableComponent implements OnInit {
 
-  users:IUser[] | undefined;
+  @Input() userList: IUser[] = [];
 
-  constructor(
-    private dataService: DataService,
-    private loadingService: LoadingService) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.getData();
-  }
+  ngOnInit(): void {}
 
-  async getData() {
-    this.loadingService.loadingOn()
-    this.users = await this.dataService.getUsers();
-    this.loadingService.loadingOff()
-    console.log(this.users)
-  }
+
 
 }
