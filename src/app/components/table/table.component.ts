@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IUser } from 'src/app/models/UserModel';
+import { IUser, IUsers } from 'src/app/models/UserModel';
 import { DataService } from 'src/app/services/data.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
@@ -11,7 +11,8 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class TableComponent implements OnInit {
 
-  users:any;
+  users: IUser[] = [];
+  sortOrder:string='asc';
 
   constructor(
     private dataService: DataService,
@@ -24,17 +25,24 @@ export class TableComponent implements OnInit {
   async getData() {
     this.loadingService.loadingOn()
     const response= await this.dataService.getUsers();
-    this.users = response?.users;
+    this.users = response?.users!;
     this.loadingService.loadingOff()
     console.log(this.users)
   }
 
-  sortByFirstName() {
-
-  }
-
-  sortByLastName(){
-
+  sortUsers(sortKey:string) {
+    // this.users.sort((a:any,b:any)=> {
+    //   const nameA = a.firstName.toLowerCase();
+    //   const nameB = b.firstName.toLowerCase();
+    //   if(nameA < nameB) return -1;
+    //   if(nameA > nameB) return 1;
+    //   return 0;
+    // })
+    this.users.sort((a:any,b:any)=> {
+      if (a[sortKey] < b[sortKey]) return -1;
+          else if (a[sortKey] > b[sortKey]) return 1;
+          else return 0;
+    })
   }
 
 }

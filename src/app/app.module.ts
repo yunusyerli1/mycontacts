@@ -10,6 +10,7 @@ import { TableComponent } from './components/table/table.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './components/loading/loading.component';
 import { NgxBootstrapIconsModule, sortDown } from 'ngx-bootstrap-icons';
+import { SortDirective } from './helper/directives/sort.directive';
 
 const icons = {
   sortDown
@@ -22,7 +23,8 @@ const icons = {
     HomeComponent,
     NotFoundPageComponent,
     TableComponent,
-    LoadingComponent
+    LoadingComponent,
+    SortDirective
   ],
   imports: [
     BrowserModule,

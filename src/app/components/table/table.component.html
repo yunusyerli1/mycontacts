@@ -2,15 +2,15 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col"><a (click)="sortByFirstName()" class="hover-gold">First Name<i-bs name="sort-down" class="fw-bold ms-2"></i-bs></a></th>
-      <th scope="col"><a (click)="sortByLastName()" class="hover-gold">Last Name<i-bs name="sort-down" class="fw-bold ms-2"></i-bs></a></th>
+      <th scope="col" [appSort]="users" data-order="desc" data-name="firstName" class="hover-gold cpointer">First Name<i-bs name="sort-down" class="ms-2"></i-bs></th>
+      <th scope="col" [appSort]="users" data-order="desc" data-name="lastName" class="hover-gold cpointer">Last Name<i-bs name="sort-down" class="ms-2"></i-bs></th>
       <th scope="col">Email</th>
       <th scope="col">Phone Number</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let user of users; let i = index">
-      <th scope="row">{{i}}</th>
+      <th scope="row">{{i+1}}</th>
       <td>{{user.firstName}}</td>
       <td>{{user.lastName}}</td>
       <td>{{user.email}}</td>

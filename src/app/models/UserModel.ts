@@ -5,33 +5,33 @@ export interface IUsers {
   limit: number;
 }
   export interface IUser {
-    id: number;
-    firstName: string;
-    lastName: string;
-    maidenName: string;
-    age: number;
-    gender: string;
-    email: string;
-    phone: string;
-    username: string;
-    password: string;
-    birthDate: string;
-    image: string;
-    bloodGroup: string;
-    height: number;
-    weight: number;
-    eyeColor: string;
-    hair: IHair;
-    domain: string;
-    ip: string;
-    address: IAddress;
-    macAddress: string;
-    university: string;
-    bank: IBank;
-    company: ICompany;
-    ein: string;
-    ssn: string;
-    userAgent: string;
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    maidenName?: string;
+    age?: number;
+    gender?: string;
+    email?: string;
+    phone?: string;
+    username?: string;
+    password?: string;
+    birthDate?: string;
+    image?: string;
+    bloodGroup?: string;
+    height?: number;
+    weight?: number;
+    eyeColor?: string;
+    hair?: IHair;
+    domain?: string;
+    ip?: string;
+    address?: IAddress;
+    macAddress?: string;
+    university?: string;
+    bank?: IBank;
+    company?: ICompany;
+    ein?: string;
+    ssn?: string;
+    userAgent?: string;
 }
   export interface IHair {
       color: string;
@@ -78,44 +78,3 @@ export interface IUsers {
       name: string;
       title: string;
   }
-
-
-
-
-
-
-
-
-
-
-
-
-// export interface IUser {
-//   id:       number;
-//   name:     string;
-//   username: string;
-//   email:    string;
-//   address:  IAddress;
-//   phone:    string;
-//   website:  string;
-//   company:  ICompany;
-// }
-
-// export interface IAddress {
-//   street:  string;
-//   suite:   string;
-//   city:    string;
-//   zipcode: string;
-//   geo:     IGeo;
-// }
-
-// export interface IGeo {
-//   lat: string;
-//   lng: string;
-// }
-
-// export interface ICompany {
-//   name:        string;
-//   catchPhrase: string;
-//   bs:          string;
-// }
