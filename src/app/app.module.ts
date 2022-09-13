@@ -9,12 +9,9 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 import { TableComponent } from './components/table/table.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './components/loading/loading.component';
-import { NgxBootstrapIconsModule, alarm, alarmFill, alignBottom, sortDown } from 'ngx-bootstrap-icons';
+import { NgxBootstrapIconsModule, sortDown } from 'ngx-bootstrap-icons';
 
 const icons = {
-  alarm,
-  alarmFill,
-  alignBottom,
   sortDown
 };
 

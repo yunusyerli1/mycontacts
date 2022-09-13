@@ -11,7 +11,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class TableComponent implements OnInit {
 
-  users:IUser[] | undefined;
+  users:any;
 
   constructor(
     private dataService: DataService,
@@ -23,9 +23,18 @@ export class TableComponent implements OnInit {
 
   async getData() {
     this.loadingService.loadingOn()
-    this.users = await this.dataService.getUsers();
+    const response= await this.dataService.getUsers();
+    this.users = response?.users;
     this.loadingService.loadingOff()
     console.log(this.users)
+  }
+
+  sortByFirstName() {
+
+  }
+
+  sortByLastName(){
+
   }
 
 }
