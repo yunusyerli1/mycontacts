@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
-import { DataStore } from 'src/app/services/data.store';
 
 @Component({
   selector: 'app-search-bar',
@@ -11,17 +10,17 @@ export class SearchBarComponent implements OnInit {
 
   term: string ='';
 
-  constructor(private dataService: DataService, private dataStore: DataStore) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
   }
 
   filterByLastName() {
-    if(this.term != '') this.dataService.setSearchTerm(this.term.trim());
+    if(this.term != '') this.dataService.setSearchTerm(this.term.trim().toLocaleLowerCase());
   }
 
   clearFilter() {
-    this.dataStore.clearFilter();
+    this.dataService.clearFilter();
     this.term='';
   }
 
