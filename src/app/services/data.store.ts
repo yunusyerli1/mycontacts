@@ -1,9 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, throwError } from "rxjs";
-import { catchError, map, shareReplay, tap } from "rxjs/operators";
+import { catchError, finalize, map, shareReplay, tap } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { IUser, IUsers } from "../models/UserModel";
+import { ErrorMessageService } from "./error-message.service";
 import { LoadingService } from "./loading.service";
 
 @Injectable({
@@ -12,28 +13,30 @@ import { LoadingService } from "./loading.service";
 export class DataStore {
 
   private usersSubject = new BehaviorSubject<IUser[]>([]);
-  users$: Observable<IUser[]>= this.usersSubject.asObservable();
-
   private usersSubjectTemp = new BehaviorSubject<IUser[]>([]);
+  users$: Observable<IUser[]>= this.usersSubjectTemp.asObservable();
 
   constructor(private http: HttpClient,
-    private loadingService: LoadingService) {
+    private loadingService: LoadingService,
+    private errorMessageService: ErrorMessageService) {
     this.loadAllUsers()
   }
 
   private loadAllUsers() {
-    this.loadingService.loadingOn();
+    this.loadingService.loadingOn()
     const loadUsers$ = this.http.get<IUsers>(environment.fakeDataUrl + "/users").pipe(
       map(data => data.users),
       catchError(err => {
-        const message = "Could not load users"
+        const message = "Could not load users";
+        this.errorMessageService.showErrors(message)
         console.log(message, err)
         return throwError(()=> err)
       }),
       tap(users => this.usersSubject.next(users)),
       tap(users => this.usersSubjectTemp.next(users)),
+      finalize(()=> this.loadingService.loadingOff())
     ).subscribe()
-    this.loadingService.loadingOff();
+
   }
 
   addUser(user: IUser) {
@@ -45,19 +48,16 @@ export class DataStore {
   }
 
   filterByLastName(lastname:string){
-    this.users$
-    .pipe(
-      //tap(users => this.usersSubjectTemp.next(users)),
+    this.clearFilter();
+    this.users$.pipe(
       map(users => users.filter(user => user.lastName == lastname)),
-      tap(users => this.usersSubject.next(users)),
+      tap(users => this.usersSubjectTemp.next(users)),
     ).subscribe()
   }
 
   clearFilter() {
-
-    const users = this.usersSubjectTemp.getValue();
-    console.log(users)
-    this.usersSubject.next(users)
+    const users = this.usersSubject.getValue();
+    this.usersSubjectTemp.next(users)
   }
 
 }

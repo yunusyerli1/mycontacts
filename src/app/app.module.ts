@@ -9,14 +9,18 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 import { TableComponent } from './components/table/table.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './components/loading/loading.component';
-import { NgxBootstrapIconsModule, sortDown, funnel } from 'ngx-bootstrap-icons';
+import { NgxBootstrapIconsModule, sortDown, funnel, xLg } from 'ngx-bootstrap-icons';
 import { SortDirective } from './helper/directives/sort.directive';
 import { FormsModule } from '@angular/forms';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { LoadingService } from './services/loading.service';
+import { ErrorMessagesComponent } from './components/error-messages/error-messages.component';
+import { ErrorMessageService } from './services/error-message.service';
 
 const icons = {
   sortDown,
   funnel,
+  xLg
 };
 
 @NgModule({
@@ -28,7 +32,8 @@ const icons = {
     TableComponent,
     LoadingComponent,
     SortDirective,
-    SearchBarComponent
+    SearchBarComponent,
+    ErrorMessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,7 @@ const icons = {
     AppRoutingModule,
     NgxBootstrapIconsModule.pick(icons)
   ],
-  providers: [],
+  providers: [LoadingService, ErrorMessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
