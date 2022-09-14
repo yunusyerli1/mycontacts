@@ -40,8 +40,10 @@ export class DataStore {
   }
 
   addUser(user: IUser) {
+    console.log(user)
     const users = this.usersSubject.getValue();
     const newUser: IUser = user;
+    console.log(newUser)
     const newUsers: IUser[] = users.slice(0);
     newUsers.push(newUser);
     this.usersSubject.next(newUsers);

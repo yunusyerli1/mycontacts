@@ -13,8 +13,6 @@ import { DataStore } from 'src/app/services/data.store';
 export class HomeComponent implements OnInit {
 
   users$!:Observable<IUser[]>;
-  sortOrder:string='asc';
-  errorMessage:string='';
 
   constructor(
     private dataService: DataService,
@@ -22,7 +20,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData();
-    //this.dataService.getSearchTerm();
   }
 
   getData() {
