@@ -44,6 +44,7 @@ export class DataStore {
     const newUser: IUser = user;
     const newUsers: IUser[] = users.slice(0);
     newUsers.push(newUser);
+    this.usersSubjectTemp.next(newUsers);
     this.usersSubject.next(newUsers);
   }
 

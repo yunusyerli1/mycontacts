@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { filter, map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { IUser } from 'src/app/models/UserModel';
 import { DataService } from 'src/app/services/data.service';
 import { DataStore } from 'src/app/services/data.store';
@@ -13,8 +13,6 @@ import { DataStore } from 'src/app/services/data.store';
 export class HomeComponent implements OnInit {
 
   users$!:Observable<IUser[]>;
-  sortOrder:string='asc';
-  errorMessage:string='';
 
   constructor(
     private dataService: DataService,
@@ -22,7 +20,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData();
-    //this.dataService.getSearchTerm();
   }
 
   getData() {

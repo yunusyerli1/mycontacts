@@ -11,11 +11,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './components/loading/loading.component';
 import { NgxBootstrapIconsModule, sortDown, funnel, xLg } from 'ngx-bootstrap-icons';
 import { SortDirective } from './helper/directives/sort.directive';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { LoadingService } from './services/loading.service';
 import { ErrorMessagesComponent } from './components/error-messages/error-messages.component';
 import { ErrorMessageService } from './services/error-message.service';
+import { ModalAddComponent } from './components/modal-add/modal-add.component';
+import { ToastrModule } from 'ngx-toastr';
 
 const icons = {
   sortDown,
@@ -33,14 +35,20 @@ const icons = {
     LoadingComponent,
     SortDirective,
     SearchBarComponent,
-    ErrorMessagesComponent
+    ErrorMessagesComponent,
+    ModalAddComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
-    NgxBootstrapIconsModule.pick(icons)
+    NgxBootstrapIconsModule.pick(icons),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
   ],
   providers: [LoadingService, ErrorMessageService],
   bootstrap: [AppComponent]
