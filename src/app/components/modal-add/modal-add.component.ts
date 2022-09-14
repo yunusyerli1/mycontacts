@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { IUser } from 'src/app/models/UserModel';
 import { DataStore } from 'src/app/services/data.store';
 
@@ -25,7 +26,8 @@ export class ModalAddComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private dataStore: DataStore) { }
+    private dataStore: DataStore,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.createContactForm();
@@ -105,6 +107,7 @@ export class ModalAddComponent implements OnInit {
       console.log(params)
       this.dataStore.addUser(params);
       this.closebutton.nativeElement.click();
+      this.showSuccess()
       // const result =  await this.membershipService.addContact(params);
       // if (result.error) {
       //   this.toastr.error("Sistemsel Hata!", 'İşlem Başarısız');
@@ -113,6 +116,10 @@ export class ModalAddComponent implements OnInit {
       //   this.contactForm.reset();
       // }
     }
+  }
+
+  showSuccess() {
+    this.toastr.success('User has been added successfully!', 'Success');
   }
 
   resetForm() {

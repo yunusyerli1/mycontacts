@@ -17,6 +17,7 @@ import { LoadingService } from './services/loading.service';
 import { ErrorMessagesComponent } from './components/error-messages/error-messages.component';
 import { ErrorMessageService } from './services/error-message.service';
 import { ModalAddComponent } from './components/modal-add/modal-add.component';
+import { ToastrModule } from 'ngx-toastr';
 
 const icons = {
   sortDown,
@@ -43,7 +44,11 @@ const icons = {
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
-    NgxBootstrapIconsModule.pick(icons)
+    NgxBootstrapIconsModule.pick(icons),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
   ],
   providers: [LoadingService, ErrorMessageService],
   bootstrap: [AppComponent]
