@@ -104,17 +104,9 @@ export class ModalAddComponent implements OnInit {
       ssn: "213213545",
       userAgent: "John Doe",
       }
-      console.log(params)
       this.dataStore.addUser(params);
       this.closebutton.nativeElement.click();
       this.showSuccess()
-      // const result =  await this.membershipService.addContact(params);
-      // if (result.error) {
-      //   this.toastr.error("Sistemsel Hata!", 'İşlem Başarısız');
-      // } else {
-      //   this.toastr.success('Mesajınız gönderilmiştir!', 'İşlem Başarılı');
-      //   this.contactForm.reset();
-      // }
     }
   }
 

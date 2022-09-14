@@ -24,12 +24,11 @@ export class DataStore {
 
   private loadAllUsers() {
     this.loadingService.loadingOn()
-    const loadUsers$ = this.http.get<IUsers>(environment.fakeDataUrl + "/users").pipe(
+    this.http.get<IUsers>(environment.fakeDataUrl + "/users").pipe(
       map(data => data.users),
       catchError(err => {
         const message = "Could not load users";
         this.errorMessageService.showErrors(message)
-        console.log(message, err)
         return throwError(()=> err)
       }),
       tap(users => this.usersSubject.next(users)),

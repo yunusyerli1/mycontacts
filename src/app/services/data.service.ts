@@ -15,7 +15,6 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   setSearchTerm(term:string){
-    console.log(term)
     this.searchSubject.next(term);
   }
 
