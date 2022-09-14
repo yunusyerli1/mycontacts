@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IUser } from 'src/app/models/UserModel';
 import { DataStore } from 'src/app/services/data.store';
@@ -10,16 +10,18 @@ import { DataStore } from 'src/app/services/data.store';
 })
 export class ModalAddComponent implements OnInit {
 
+  PATTERN_EMAIL = "[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,63}";
+  PATTERN_NAME = "^((?:[A-Za-zğüşöçıİĞÜŞÖÇ]+ ?){1,2})$";
+  PATTERN_ONLY_NUMBERS = "^[0-9]*$";
+
+  @ViewChild('closebutton') closebutton:ElementRef;
+
   contactForm: FormGroup<{
     firstname: FormControl<string>,
     lastname:FormControl<string>,
     email: FormControl<string>,
     phone: FormControl<string>,
   }>;
-
-  PATTERN_EMAIL = "[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,63}";
-  PATTERN_NAME = "^((?:[A-Za-zğüşöçıİĞÜŞÖÇ]+ ?){1,2})$";
-  PATTERN_ONLY_NUMBERS = "^[0-9]*$";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -102,6 +104,7 @@ export class ModalAddComponent implements OnInit {
       }
       console.log(params)
       this.dataStore.addUser(params);
+      this.closebutton.nativeElement.click();
       // const result =  await this.membershipService.addContact(params);
       // if (result.error) {
       //   this.toastr.error("Sistemsel Hata!", 'İşlem Başarısız');

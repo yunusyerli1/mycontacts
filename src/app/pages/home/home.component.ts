@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { filter, map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { IUser } from 'src/app/models/UserModel';
 import { DataService } from 'src/app/services/data.service';
 import { DataStore } from 'src/app/services/data.store';
