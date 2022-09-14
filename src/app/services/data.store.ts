@@ -24,7 +24,7 @@ export class DataStore {
 
   private loadAllUsers() {
     this.loadingService.loadingOn()
-    const loadUsers$ = this.http.get<IUsers>(environment.fakeDataUrl + "/uses").pipe(
+    const loadUsers$ = this.http.get<IUsers>(environment.fakeDataUrl + "/users").pipe(
       map(data => data.users),
       catchError(err => {
         const message = "Could not load users";
