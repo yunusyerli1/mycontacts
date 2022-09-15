@@ -1,6 +1,7 @@
 # Mycontacts
 
-This project was generated with Angular version 14.1.0
+This project was generated with Angular version 14.1.0.
+This project was developed reactive style.
 
 ## To Start The Project
 
