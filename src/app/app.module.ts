@@ -17,6 +17,7 @@ import { ErrorMessagesComponent } from './components/error-messages/error-messag
 import { ErrorMessageService } from './services/error-message.service';
 import { ModalAddComponent } from './components/modal-add/modal-add.component';
 import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const icons = {
   sortDown,
@@ -42,6 +43,7 @@ const icons = {
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     NgxBootstrapIconsModule.pick(icons),
     ToastrModule.forRoot({
