@@ -37,7 +37,6 @@ export class DataService {
       tap(users => this.usersSubjectTemp.next(users)),
       finalize(()=> this.loadingService.loadingOff())
     ).subscribe()
-
   }
 
   addUser(user: IUser) {
@@ -60,20 +59,6 @@ export class DataService {
   clearFilter() {
     const users = this.usersSubject.getValue();
     this.usersSubjectTemp.next(users)
-  }
-
-  setSearchTerm(term:string){
-    this.searchSubject.next(term);
-  }
-
-  getSearchTerm() {
-    return this.searchSubject.getValue();
-  }
-
-  public getUsers(): Observable<IUser[]> {
-    return  this.http.get<IUsers>(environment.fakeDataUrl + "/users").pipe(
-      map(data => data.users)
-    )
   }
 
 }
