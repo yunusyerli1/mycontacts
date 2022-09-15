@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { IUser } from 'src/app/models/UserModel';
 import { DataService } from 'src/app/services/data.service';
@@ -7,11 +7,11 @@ import { DataService } from 'src/app/services/data.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
 
-  users$!:Observable<IUser[]>;
+  users$!:Observable<IUser[]>
 
   constructor(
     private dataService: DataService) { }
@@ -22,10 +22,6 @@ export class HomeComponent implements OnInit {
 
   getData() {
     this.users$ = this.dataService.users$;
-
-    this.dataService.searchQuery$.pipe(
-      tap(val => this.dataService.filterByLastName(val))
-    ).subscribe()
   }
 
 }
