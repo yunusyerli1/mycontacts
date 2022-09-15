@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { IUser } from 'src/app/models/UserModel';
 import { DataService } from 'src/app/services/data.service';
-import { DataStore } from 'src/app/services/data.store';
 
 @Component({
   selector: 'app-home',
@@ -15,18 +14,17 @@ export class HomeComponent implements OnInit {
   users$!:Observable<IUser[]>;
 
   constructor(
-    private dataService: DataService,
-    private dataStore: DataStore) { }
+    private dataService: DataService) { }
 
   ngOnInit(): void {
     this.getData();
   }
 
   getData() {
-    this.users$ = this.dataStore.users$;
+    this.users$ = this.dataService.users$;
 
     this.dataService.searchQuery$.pipe(
-      tap(val => this.dataStore.filterByLastName(val))
+      tap(val => this.dataService.filterByLastName(val))
     ).subscribe()
   }
 

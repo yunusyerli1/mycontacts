@@ -13,9 +13,7 @@ export class ErrorMessagesComponent implements OnInit {
   showMessages = false;
   errors$: Observable<string[]>;
 
-  constructor(public errorMessagesService: ErrorMessageService) {
-    console.log("Created messages component")
-  }
+  constructor(public errorMessagesService: ErrorMessageService) {}
 
   ngOnInit() {
     this.errors$ = this.errorMessagesService.errors$
@@ -23,7 +21,6 @@ export class ErrorMessagesComponent implements OnInit {
           tap(() => this.showMessages = true)
       );
   }
-
 
   onClose() {
     this.showMessages = false;
