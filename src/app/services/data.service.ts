@@ -15,9 +15,6 @@ export class DataService {
   private usersSubjectTemp = new BehaviorSubject<IUser[]>([]);
   users$: Observable<IUser[]>= this.usersSubjectTemp.asObservable();
 
-  private searchSubject = new BehaviorSubject<string>('');
-  searchQuery$: Observable<string>= this.searchSubject.asObservable();
-
   constructor(private http: HttpClient,
     private loadingService: LoadingService,
     private errorMessageService: ErrorMessageService) {
