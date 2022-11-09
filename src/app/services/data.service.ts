@@ -61,6 +61,20 @@ export class DataService {
     this.usersSubjectTemp.next(users)
   }
 
+  loadUser(id) {
+    this.loadingService.loadingOn()
+   return this.http.get<IUser>(environment.fakeDataUrl + "/users/"+id).pipe(
+      map(data => data),
+      tap(data => console.log(data)),
+      catchError(err => {
+        const message = "Could not load user";
+        this.errorMessageService.showErrors(message)
+        return throwError(()=> err)
+      }),
+      finalize(()=> this.loadingService.loadingOff())
+    )
+  }
+
 }
 
 

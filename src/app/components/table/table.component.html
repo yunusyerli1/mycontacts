@@ -11,7 +11,7 @@
   <tbody>
     <tr *ngFor="let user of userList; let i = index">
       <th scope="row">{{i+1}}</th>
-      <td>{{user.firstName}}</td>
+      <td><a routerLink="/detail/{{i+1}}">{{user.firstName}}</a></td>
       <td>{{user.lastName}}</td>
       <td>{{user.email}}</td>
       <td>{{user.phone}}</td>

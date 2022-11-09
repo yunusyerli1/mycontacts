@@ -18,6 +18,10 @@ import { ErrorMessageService } from './services/error-message.service';
 import { ModalAddComponent } from './components/modal-add/modal-add.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FeaturePageComponent } from './pages/feature-page/feature-page.component';
+import { UserFacade } from './pages/feature-page/user.facade';
+import { UserDetailComponent } from './pages/user-detail/user-detail.component';
+import { UserDetailResolver } from './helper/resolvers/userDetail.resolver';
 
 const icons = {
   sortDown,
@@ -36,7 +40,9 @@ const icons = {
     SortDirective,
     SearchBarComponent,
     ErrorMessagesComponent,
-    ModalAddComponent
+    ModalAddComponent,
+    FeaturePageComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +57,7 @@ const icons = {
       preventDuplicates: true,
     }),
   ],
-  providers: [LoadingService, ErrorMessageService],
+  providers: [LoadingService, ErrorMessageService, UserFacade, UserDetailResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
