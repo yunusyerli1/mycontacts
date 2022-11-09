@@ -4,6 +4,9 @@
 <main>
   <app-loading></app-loading>
   <app-error-messages></app-error-messages>
+  <div class="spinner-border" role="status" *ngIf="loading">
+    <span class="visually-hidden">Loading...</span>
+  </div>
   <router-outlet></router-outlet>
 </main>
 
