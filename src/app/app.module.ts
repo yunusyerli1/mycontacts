@@ -22,6 +22,7 @@ import { FeaturePageComponent } from './pages/feature-page/feature-page.componen
 import { UserFacade } from './pages/feature-page/user.facade';
 import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 import { UserDetailResolver } from './helper/resolvers/userDetail.resolver';
+import { DialogWindowComponent } from './components/dialog-window/dialog-window.component';
 
 const icons = {
   sortDown,
@@ -42,7 +43,8 @@ const icons = {
     ErrorMessagesComponent,
     ModalAddComponent,
     FeaturePageComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    DialogWindowComponent
   ],
   imports: [
     BrowserModule,
